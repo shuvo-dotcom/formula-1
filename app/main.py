@@ -16,4 +16,4 @@ app.include_router(comparisons.router)
 # Redirect root to login page
 @app.get("/", include_in_schema=False)
 async def root():
-    return RedirectResponse(url="/auth/login")
+    return RedirectResponse(url="/home")

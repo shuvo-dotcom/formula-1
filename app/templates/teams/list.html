@@ -1,9 +1,12 @@
 {% extends 'layouts/base.html' %}
-
 {% block content %}
 <h2>Teams List</h2>
-<a href="/teams/create" class="btn btn-primary mb-3">Add New Team</a>
-<a href="/home" class="btn btn-secondary mb-3">Back to Home</a> <!-- Added button -->
+
+<div id="authButtons">
+    <a href="/teams/create" id="createBtn" class="btn btn-primary mb-3" style="display: none;">Add New Team</a>
+    <p id="loginPrompt" class="text-muted">Log in to add or edit teams.</p>
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -27,10 +30,37 @@
             <td>{{ team.previous_season_position }}</td>
             <td>
                 <a href="/teams/{{ team.name }}" class="btn btn-sm btn-info">View</a>
-                <a href="/teams/edit/{{ team.name }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="/teams/edit/{{ team.name }}" class="btn btn-sm btn-warning edit-btn" style="display: none;">Edit</a>
+                <button class="btn btn-sm btn-warning login-alert-btn" onclick="alert('Please login first.')" style="display: none;">Edit</button>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    firebase.auth().onAuthStateChanged(user => {
+        const createBtn = document.getElementById('createBtn');
+        const loginPrompt = document.getElementById('loginPrompt');
+        const editButtons = document.querySelectorAll('.edit-btn');
+        const loginAlertButtons = document.querySelectorAll('.login-alert-btn');
+
+        if (user) {
+            // User is logged in
+            createBtn.style.display = 'inline-block';
+            loginPrompt.style.display = 'none';
+            editButtons.forEach(btn => btn.style.display = 'inline-block');
+            loginAlertButtons.forEach(btn => btn.style.display = 'none');
+        } else {
+            // User is logged out
+            createBtn.style.display = 'none';
+            loginPrompt.style.display = 'block';
+            editButtons.forEach(btn => btn.style.display = 'none');
+            loginAlertButtons.forEach(btn => btn.style.display = 'inline-block');
+        }
+    });
+});
+</script>
+
 {% endblock %}
