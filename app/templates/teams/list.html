@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h2>Teams List</h2>
+<a href="/teams/create" class="btn btn-primary mb-3">Add New Team</a>
+<a href="/home" class="btn btn-secondary mb-3">Back to Home</a> <!-- Added button -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Year Founded</th>
+            <th>Pole Positions</th>
+            <th>Race Wins</th>
+            <th>Constructor Titles</th>
+            <th>Previous Season Position</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for team in teams %}
+        <tr>
+            <td>{{ team.name }}</td>
+            <td>{{ team.year_founded }}</td>
+            <td>{{ team.pole_positions }}</td>
+            <td>{{ team.race_wins }}</td>
+            <td>{{ team.constructor_titles }}</td>
+            <td>{{ team.previous_season_position }}</td>
+            <td>
+                <a href="/teams/{{ team.name }}" class="btn btn-sm btn-info">View</a>
+                <a href="/teams/edit/{{ team.name }}" class="btn btn-sm btn-warning">Edit</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

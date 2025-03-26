@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Driver - {{ driver.name }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-5">
+    <h2>Edit Driver - {{ driver.name }}</h2>
+    <form action="/drivers/edit/{{ driver.name }}" method="post">
+        <div class="mb-3">
+            <label>Age:</label>
+            <input type="number" name="age" class="form-control" value="{{ driver.age }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Team:</label>
+            <input type="text" name="team" class="form-control" value="{{ driver.team }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Pole Positions:</label>
+            <input type="number" name="pole_positions" class="form-control" value="{{ driver.pole_positions }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Race Wins:</label>
+            <input type="number" name="race_wins" class="form-control" value="{{ driver.race_wins }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Points Scored:</label>
+            <input type="number" name="points_scored" class="form-control" value="{{ driver.points_scored }}" required>
+        </div>
+        <div class="mb-3">
+            <label>World Titles:</label>
+            <input type="number" name="world_titles" class="form-control" value="{{ driver.world_titles }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Fastest Laps:</label>
+            <input type="number" name="fastest_laps" class="form-control" value="{{ driver.fastest_laps }}" required>
+        </div>
+        <button type="submit" class="btn btn-success">Update Driver</button>
+        <a href="/drivers/{{ driver.name }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</body>
+</html>

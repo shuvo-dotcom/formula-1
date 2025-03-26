@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>Driver Search Results</h2>
+{% if drivers %}
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Team</th>
+        <th>Pole Positions</th>
+        <th>Race Wins</th>
+        <th>Points Scored</th>
+        <th>World Titles</th>
+        <th>Fastest Laps</th>
+    </tr>
+    {% for driver in drivers %}
+    <tr>
+        <td>{{ driver.name }}</td>
+        <td>{{ driver.age }}</td>
+        <td>{{ driver.team }}</td>
+        <td>{{ driver.pole_positions }}</td>
+        <td>{{ driver.race_wins }}</td>
+        <td>{{ driver.points_scored }}</td>
+        <td>{{ driver.world_titles }}</td>
+        <td>{{ driver.fastest_laps }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p class="text-muted">No results found.</p>
+{% endif %}
+<a href="/search/drivers" class="btn btn-secondary">Back to Search</a>
+{% endblock %}

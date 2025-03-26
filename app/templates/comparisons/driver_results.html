@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>Driver Comparison Results</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>{{ driver1.name }}</th>
+            <th>{{ driver2.name }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attr, label in [
+            ('age', 'Age'),
+            ('pole_positions', 'Pole Positions'),
+            ('race_wins', 'Race Wins'),
+            ('points_scored', 'Points Scored'),
+            ('world_titles', 'World Titles'),
+            ('fastest_laps', 'Fastest Laps')
+        ] %}
+        <tr>
+            <td>{{ label }}</td>
+            {% set val1 = driver1[attr] %}
+            {% set val2 = driver2[attr] %}
+            {% if attr == 'age' %}
+                <td {% if val1 < val2 %}class="table-success"{% endif %}>{{ val1 }}</td>
+                <td {% if val2 < val1 %}class="table-success"{% endif %}>{{ val2 }}</td>
+            {% else %}
+                <td {% if val1 > val2 %}class="table-success"{% endif %}>{{ val1 }}</td>
+                <td {% if val2 > val1 %}class="table-success"{% endif %}>{{ val2 }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/comparisons/drivers" class="btn btn-secondary">Back to Comparison</a>
+{% endblock %}

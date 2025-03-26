@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>Team Comparison Results</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>{{ team1.name }}</th>
+            <th>{{ team2.name }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for attr, label in [
+            ('year_founded', 'Year Founded'),
+            ('pole_positions', 'Pole Positions'),
+            ('race_wins', 'Race Wins'),
+            ('constructor_titles', 'Constructor Titles'),
+            ('previous_season_position', 'Previous Season Position')
+        ] %}
+        <tr>
+            <td>{{ label }}</td>
+            {% set val1 = team1[attr] %}
+            {% set val2 = team2[attr] %}
+            {% if attr in ['year_founded', 'previous_season_position'] %}
+                <td {% if val1 < val2 %}class="table-success"{% endif %}>{{ val1 }}</td>
+                <td {% if val2 < val1 %}class="table-success"{% endif %}>{{ val2 }}</td>
+            {% else %}
+                <td {% if val1 > val2 %}class="table-success"{% endif %}>{{ val1 }}</td>
+                <td {% if val2 > val1 %}class="table-success"{% endif %}>{{ val2 }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/comparisons/teams" class="btn btn-secondary">Back to Comparison</a>
+{% endblock %}

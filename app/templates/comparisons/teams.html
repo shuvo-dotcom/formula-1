@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>Compare Teams</h2>
+<form action="/comparisons/teams/results" method="post">
+    <select name="team1" class="form-select mb-2" required>
+        <option value="" disabled selected>Select first team</option>
+        {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="team2" class="form-select mb-2" required>
+        <option value="" disabled selected>Select second team</option>
+        {% for team in teams %}
+            <option value="{{ team.name }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Compare</button>
+    <a href="/home" class="btn btn-secondary">Back to Home</a>
+</form>
+{% endblock %}

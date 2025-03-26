@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="container py-5 text-center">
+    <h2>🏁 Welcome to the F1 Database 🏎️</h2>
+    <p>Select an option below to proceed:</p>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-4 mb-3">
+            <a href="/teams/" class="btn btn-lg btn-primary w-100">View Teams</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="/drivers/" class="btn btn-lg btn-success w-100">View Drivers</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="/comparisons/drivers" class="btn btn-lg btn-warning w-100">Compare Drivers</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="/comparisons/teams" class="btn btn-lg btn-danger w-100">Compare Teams</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="/search/drivers" class="btn btn-lg btn-info w-100">Search Drivers</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="/search/teams" class="btn btn-lg btn-secondary w-100">Search Teams</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

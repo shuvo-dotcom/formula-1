@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ driver.name }} - Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-5">
+    <h2>{{ driver.name }} - Details</h2>
+    <table class="table table-striped">
+        <tr><th>Name</th><td>{{ driver.name }}</td></tr>
+        <tr><th>Age</th><td>{{ driver.age }}</td></tr>
+        <tr><th>Team</th><td>{{ driver.team }}</td></tr>
+        <tr><th>Pole Positions</th><td>{{ driver.pole_positions }}</td></tr>
+        <tr><th>Race Wins</th><td>{{ driver.race_wins }}</td></tr>
+        <tr><th>Points Scored</th><td>{{ driver.points_scored }}</td></tr>
+        <tr><th>World Titles</th><td>{{ driver.world_titles }}</td></tr>
+        <tr><th>Fastest Laps</th><td>{{ driver.fastest_laps }}</td></tr>
+    </table>
+    <a href="/drivers/edit/{{ driver.name }}" class="btn btn-primary">Edit</a>
+    <a href="/drivers/" class="btn btn-secondary">Back to List</a>
+</body>
+</html>

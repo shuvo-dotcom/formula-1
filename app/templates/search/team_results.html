@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h2>Team Search Results</h2>
+{% if teams %}
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Year Founded</th>
+        <th>Pole Positions</th>
+        <th>Race Wins</th>
+        <th>Constructor Titles</th>
+        <th>Previous Season Position</th>
+    </tr>
+    {% for team in teams %}
+    <tr>
+        <td>{{ team.name }}</td>
+        <td>{{ team.year_founded }}</td>
+        <td>{{ team.pole_positions }}</td>
+        <td>{{ team.race_wins }}</td>
+        <td>{{ team.constructor_titles }}</td>
+        <td>{{ team.previous_season_position }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p class="text-muted">No results found.</p>
+{% endif %}
+<a href="/search/teams" class="btn btn-secondary">Back to Search</a>
+{% endblock %}
