@@ -5,7 +5,7 @@ from app.routes import auth, drivers, teams, comparisons
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+# app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Include routers
 app.include_router(auth.router)
