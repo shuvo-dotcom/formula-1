@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from app.services.firestore import get_collection, fetch_document, fetch_all_documents
+from app.services.firestore import delete_document, get_collection, fetch_document, fetch_all_documents
 from app.models.team import Team
 
 router = APIRouter(prefix="/teams", tags=["teams"])
@@ -86,3 +86,8 @@ async def team_detail(request: Request, team_name: str):
         "request": request,
         "team": team
     })
+
+@router.get("/delete/{team_name}")
+async def delete_team(team_name: str):
+    delete_document("teams", team_name)
+    return RedirectResponse(url="/teams/", status_code=303)

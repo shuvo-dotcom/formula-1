@@ -34,3 +34,6 @@ def fetch_two_documents(collection_name, doc_id1, doc_id2):
     if doc1_ref.exists and doc2_ref.exists:
         return doc1_ref.to_dict(), doc2_ref.to_dict()
     return None, None
+
+def delete_document(collection_name, document_id):
+    db.collection(collection_name).document(document_id).delete()

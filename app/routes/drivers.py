@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Form, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from app.services.firestore import fetch_all_documents, fetch_document, get_collection
+from app.services.firestore import delete_document, fetch_all_documents, fetch_document, get_collection
 from app.models.driver import Driver
 
 router = APIRouter(prefix="/drivers", tags=["drivers"])
@@ -94,3 +94,8 @@ async def driver_detail(request: Request, driver_name: str):
         "request": request,
         "driver": driver
     })
+
+@router.get("/delete/{driver_name}")
+async def delete_driver(driver_name: str):
+    delete_document("drivers", driver_name)
+    return RedirectResponse(url="/drivers/", status_code=303)

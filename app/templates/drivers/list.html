@@ -35,8 +35,11 @@
             <td>
                 <a href="/drivers/{{ driver.name }}" class="btn btn-sm btn-info">View</a>
                 <a href="/drivers/edit/{{ driver.name }}" class="btn btn-sm btn-warning edit-btn" style="display: none;">Edit</a>
+                <a href="/drivers/delete/{{ driver.name }}" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure to delete this driver?');" style="display: none;">Delete</a>
                 <button class="btn btn-sm btn-warning login-alert-btn" onclick="alert('Please login first.')" style="display: none;">Edit</button>
+                <button class="btn btn-sm btn-danger login-alert-btn" onclick="alert('Please login first.')" style="display: none;">Delete</button>
             </td>
+            
         </tr>
     {% endfor %}
     </tbody>
@@ -48,21 +51,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const createBtn = document.getElementById('createBtn');
         const loginPrompt = document.getElementById('loginPrompt');
         const editButtons = document.querySelectorAll('.edit-btn');
+        const deleteButtons = document.querySelectorAll('.delete-btn');
         const loginAlertButtons = document.querySelectorAll('.login-alert-btn');
 
         if (user) {
             createBtn.style.display = 'inline-block';
             loginPrompt.style.display = 'none';
             editButtons.forEach(btn => btn.style.display = 'inline-block');
+            deleteButtons.forEach(btn => btn.style.display = 'inline-block');
             loginAlertButtons.forEach(btn => btn.style.display = 'none');
         } else {
             createBtn.style.display = 'none';
             loginPrompt.style.display = 'block';
             editButtons.forEach(btn => btn.style.display = 'none');
+            deleteButtons.forEach(btn => btn.style.display = 'none');
             loginAlertButtons.forEach(btn => btn.style.display = 'inline-block');
         }
     });
 });
+
 </script>
 
 {% endblock %}
